@@ -10,7 +10,7 @@ import shtab
 from importlib.metadata import version
 from pathlib import Path
 
-from pytr.utils import get_logger, check_version, export_transactions
+from pytr.utils import get_logger, export_transactions
 from pytr.dl import DL
 from pytr.account import login
 
