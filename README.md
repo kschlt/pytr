@@ -4,7 +4,7 @@
 
 # pytr: Use TradeRepublic in terminal
 
-This i my fork of the pytr library for the private API of the Trade Republic online brokerage.
+This is my fork of the pytr library for the private API of the Trade Republic online brokerage.
 I have stripped down the functionality to use only the transaction field download.
 
 
