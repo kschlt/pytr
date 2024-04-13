@@ -92,49 +92,6 @@ def get_main_parser():
         '--workers', help='Number of workers for parallel downloading', metavar='WORKERS', default=8, type=int
     )
     parser_dl_docs.add_argument('--universal', help='Platform independent file names', action='store_true')
-    # portfolio
-    info = 'Show current portfolio'
-    parser_portfolio = parser_cmd.add_parser(
-        'portfolio',
-        formatter_class=argparse.ArgumentDefaultsHelpFormatter,
-        parents=[parser_login_args],
-        help=info,
-        description=info,
-    )
-    parser_portfolio.add_argument(
-        '-o', '--output', help='Output path of CSV file', metavar='OUTPUT', type=Path
-    )
-    # details
-    info = 'Get details for an ISIN'
-    parser_details = parser_cmd.add_parser(
-        'details',
-        formatter_class=argparse.ArgumentDefaultsHelpFormatter,
-        parents=[parser_login_args],
-        help=info,
-        description=info,
-    )
-    parser_details.add_argument('isin', help='ISIN of intrument')
-    # get_price_alarms
-    info = 'Get overview of current price alarms'
-    parser_cmd.add_parser(
-        'get_price_alarms',
-        formatter_class=argparse.ArgumentDefaultsHelpFormatter,
-        parents=[parser_login_args],
-        help=info,
-        description=info,
-    )
-    # set_price_alarms
-    info = 'Set price alarms based on diff from current price'
-    parser_set_price_alarms = parser_cmd.add_parser(
-        'set_price_alarms',
-        formatter_class=argparse.ArgumentDefaultsHelpFormatter,
-        parents=[parser_login_args],
-        help=info,
-        description=info,
-    )
-    parser_set_price_alarms.add_argument(
-        '-%', '--percent', help='Percentage +/-', metavar='[-1000 ... 1000]', type=int, default=-10
-    )
     # export_transactions
     info = 'Create a CSV with the deposits and removals ready for importing into Portfolio Performance'
     parser_export_transactions = parser_cmd.add_parser(
@@ -209,18 +166,6 @@ def main():
             universal_filepath=args.universal,
         )
         asyncio.get_event_loop().run_until_complete(dl.dl_loop())
-    elif args.command == 'set_price_alarms':
-        # TODO
-        print('Not implemented yet')
-    elif args.command == 'get_price_alarms':
-        Alarms(login(phone_no=args.phone_no, pin=args.pin, web=not args.applogin)).get()
-    elif args.command == 'details':
-        Details(login(phone_no=args.phone_no, pin=args.pin, web=not args.applogin), args.isin).get()
-    elif args.command == 'portfolio':
-        p = Portfolio(login(phone_no=args.phone_no, pin=args.pin, web=not args.applogin))
-        p.get()
-        if args.output is not None:
-            p.portfolio_to_csv(args.output)
     elif args.command == 'export_transactions':
         export_transactions(args.input, args.output, args.lang)
     elif args.version:
