@@ -65,33 +65,6 @@ def get_logger(name=__name__, verbosity=None):
     return logger
 
 
-def preview(response, num_lines=5):
-    lines = json.dumps(response, indent=2).splitlines()
-    head = '\n'.join(lines[:num_lines])
-    tail = len(lines) - num_lines
-
-    if tail <= 0:
-        return f'{head}\n'
-    else:
-        return f'{head}\n{tail} more lines hidden'
-
-
-def check_version(installed_version):
-    log = get_logger(__name__)
-    try:
-        r = requests.get('https://api.github.com/repos/marzzzello/pytr/tags', timeout=1)
-    except Exception as e:
-        log.error('Could not check for a newer version')
-        log.debug(str(e))
-        return
-    latest_version = r.json()[0]['name']
-
-    if version.parse(installed_version) < version.parse(latest_version):
-        log.warning(f'Installed pytr version ({installed_version}) is outdated. Latest version is {latest_version}')
-    else:
-        log.info('pytr is up to date')
-
-
 def export_transactions(input_path, output_path, lang='auto'):
     '''
     Create a CSV with the deposits and removals ready for importing into Portfolio Performance
