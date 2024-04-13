@@ -13,9 +13,6 @@ from pathlib import Path
 from pytr.utils import get_logger, check_version, export_transactions
 from pytr.dl import DL
 from pytr.account import login
-from pytr.portfolio import Portfolio
-from pytr.alarms import Alarms
-from pytr.details import Details
 
 
 def get_main_parser():
