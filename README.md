@@ -4,27 +4,8 @@
 
 # pytr: Use TradeRepublic in terminal
 
-This is a library for the private API of the Trade Republic online brokerage. I am not affiliated with Trade Republic Bank GmbH.
-
-## Installation
-
-Make sure Python and a Python package manager like pip or [pipx](https://pipx.pypa.io/) (recommended) is installed.
-
-Install release from PyPI with `pipx install pytr`
-
-Or install from git repo like so:
-
-```sh
-pipx install git+https://github.com/marzzzello/pytr
-```
-
-### Update
-
-```sh
-pipx upgrade pytr
-# or
-pipx upgrade-all
-```
+This i my fork of the pytr library for the private API of the Trade Republic online brokerage.
+I have stripped down the functionality to use only the transaction field download.
 
 
 ## Usage
@@ -32,13 +13,13 @@ pipx upgrade-all
 ```
 $ pytr help
 usage: pytr [-h] [-v {warning,info,debug}] [-V]
-            {help,login,dl_docs,portfolio,details,get_price_alarms,set_price_alarms,export_transactions,completion}
+            {help,login,dl_docs,export_transactions}
             ...
 
 Use "pytr command_name --help" to get detailed help to a specific command
 
 Commands:
-  {help,login,dl_docs,portfolio,details,get_price_alarms,set_price_alarms,export_transactions,completion}
+  {help,login,dl_docs,export_transactions}
                          Desired action to perform
     help                 Print this help message
     login                Check if credentials file exists. If not create it
@@ -49,13 +30,8 @@ Commands:
                          (account_transactions.csv) and JSON files with all
                          events (events_with_documents.json and
                          other_events.json
-    portfolio            Show current portfolio
-    details              Get details for an ISIN
-    get_price_alarms     Get overview of current price alarms
-    set_price_alarms     Set price alarms based on diff from current price
     export_transactions  Create a CSV with the deposits and removals ready for
                          importing into Portfolio Performance
-    completion           Print shell tab completion
 
 Options:
   -h, --help             show this help message and exit
