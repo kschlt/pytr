@@ -7,15 +7,6 @@ from pytr.api import TradeRepublicApi, CREDENTIALS_FILE
 from pytr.utils import get_logger
 
 
-def get_settings(tr):
-    formatted_json = json.dumps(tr.settings(), indent=2)
-    if sys.stdout.isatty():
-        colorful_json = highlight(formatted_json, lexers.JsonLexer(), formatters.TerminalFormatter())
-        return colorful_json
-    else:
-        return formatted_json
-
-
 def login(phone_no=None, pin=None, web=True):
     '''
     If web is true, use web login method as else simulate app login.
